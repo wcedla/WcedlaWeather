@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.wcedla.wcedlaweather.gson.ForeCast;
 import com.wcedla.wcedlaweather.gson.Weather;
+import com.wcedla.wcedlaweather.service.AutoUpdateService;
 import com.wcedla.wcedlaweather.util.HttpUtil;
 import com.wcedla.wcedlaweather.util.Utility;
 
@@ -163,7 +164,7 @@ public class WeatherActivity extends AppCompatActivity {
                 });
             }
         });
-        //loadBingPic();
+        loadBingPic();//为了后台更新数据服务中刷新必应图片之用。
     }
 
     private void showWeatherInfo(Weather weather) {
@@ -199,8 +200,8 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
-        //Intent intent = new Intent(this, AutoUpdateService.class);
-        //startService(intent);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
     public void loadBingPic()
